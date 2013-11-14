@@ -5,7 +5,9 @@
 
 ## Author
 
-dchope  hopehack@gmail.com
+dchope  
+email:hopehack206@gmail.com
+blog:http://www.cnblogs.com/killbug/	
 
 ## Contents
 
