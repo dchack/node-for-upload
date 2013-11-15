@@ -1,4 +1,4 @@
-
+var fs = require('fs');
 /*
  * GET home page
  */
@@ -42,6 +42,28 @@ exports.login = function(req, res){
     console.log("login");
     res.render('login', {});
 
+};
+
+exports.upload = function(req, res){
+    console.log("upload");
+    res.render('upload', {});
+};
+
+exports.doupload = function(req, res){
+    console.log("doupload");
+    console.log("req.file = " + req.files.uploadfile.path);
+    //
+    var newPath = __dirname +"/uploadfiletmp";
+    var newFilePath = newPath + "/uploadfile.jpg";
+    if(!fs.exists(newPath)){
+        console.log("new path is not exists :"+ newPath);
+        fs.mkdirSync(newPath);
+    }
+    fs.readFile(req.files.uploadfile.path, function (err, data) {
+        fs.writeFile(newFilePath, data, function (err) {
+            res.redirect("login");
+        });
+    });
 };
 
 /*
