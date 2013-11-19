@@ -1,11 +1,12 @@
 #use node upload file
 
-sometime we need some file(img) on a public server that we can access by our public app.
-yes, we can upload them by linux command, but when the user is not a developer.
+sometimes we need some recource on a public server that we can access by our public app. for example : advert image.
+so we may upload resource repeatability. 
+as a developer, time is code! 
+so I make this project for some people who want to upload resource and is incapable of linux cammand. 
+we can build a web project for Operations team to upload for themself.
 
 use node.js to upload a file to server.
-
-
 
 ## Quickstart
 
