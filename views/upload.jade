@@ -6,9 +6,12 @@
    To change this template use File | Settings | File Templates.
 extends layout
 block content
-    div.container
+    div.fileInput-div
         form(action="/doupload", method="post", enctype="multipart/form-data")
-            input(id="fileupload", type="file", class="btn btn-success fileinput-button", multiple="", name="uploadfile")
-            button(type="submit", class="btn btn-primary btn-lg btn-block", value="Sign in") 上传
-
+            div(class="fileWrapper")
+                a(class="fileButton") 上传图片
+                input(name="uploadfile", id="uploadfile", class="fileInput ", type="file", onchange="uploadImage()")
+            //input(id="uploadfile", type="file", class="btn btn-success fileinput-button", multiple="", name="uploadfile")
+            //button(type="submit", class="btn btn-primary btn-lg btn-block", value="Sign in") 上传
+           //button(type="submit", class="btn btn-primary btn-lg btn-block", value="Sign in") 上传
 

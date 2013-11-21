@@ -50,20 +50,26 @@ exports.upload = function(req, res){
 };
 
 exports.doupload = function(req, res){
-    console.log("doupload");
     console.log("req.file = " + req.files.uploadfile.path);
-    //
     var newPath = __dirname +"/uploadfiletmp";
-    var newFilePath = newPath + "/uploadfile.jpg";
-    if(!fs.exists(newPath)){
-        console.log("new path is not exists :"+ newPath);
-        fs.mkdirSync(newPath);
-    }
+    var filename = (new Date).getTime();
+    var newFilePath = newPath + "/" + filename +".jpg";
+    fs.exists(newPath,function(exists){
+        if( ! exists){
+            console.log("new path is not exists : "+ newPath);
+            fs.mkdirSync(newPath);
+        }
+    });
     fs.readFile(req.files.uploadfile.path, function (err, data) {
         fs.writeFile(newFilePath, data, function (err) {
-            res.redirect("login");
+            res.render("uploadsuccess", {filePath:newFilePath});
         });
     });
+};
+
+exports.uploadsuccess = function(req, res){
+    console.log("uploadsuccess");
+    res.render('uploadsuccess', {});
 };
 
 /*

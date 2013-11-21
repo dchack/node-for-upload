@@ -4,6 +4,14 @@ body {
     background-color: #eee;
 }
 
+.fileInput-div{
+    MARGIN-RIGHT: auto;
+    MARGIN-LEFT: auto;
+    height:50px;
+    width:100px;
+    vertical-align:middle;
+    line-height:200px;
+}
 .form-signin {
     max-width: 330px;
     padding: 15px;
@@ -48,4 +56,49 @@ body {
     position: absolute;
     right: 0;
     top: 0;
+}
+.fileInput {
+    cursor: pointer;
+    height: 50px;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size:100px;
+    filter:alpha(opacity=0);
+    width: 150px;
+}
+.fileButton {
+    background: none repeat scroll 0 0 #585eaa;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    marign:0 auto;
+    font-size: 20px;
+    height: 80px;
+    line-height: 20px;
+    padding: 17px 4px;
+    text-align: center;
+    width: 150px;
+    border-radius: 4px;
+}
+a:focus, a:active, a:hover {
+    border: medium none;
+    outline: medium none;
+}
+
+.fileWrapper {
+    float: left;
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+    width: 150px;
+    cursor: pointer;
+}
+
+.fileWrapper a{
+    color: #fff !important;
+    text-decoration: none!important;
+    cursor: pointer;
+    height: 50px;
 }
