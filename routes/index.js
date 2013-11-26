@@ -44,6 +44,24 @@ exports.login = function(req, res){
 
 };
 
+exports.dologin = function(db){
+    return function(req, res) {
+        console.log("doupload");
+        var username = req.body.username;
+        var password = req.body.password;
+        console.log("username:" + username + "password:" + password);
+        var collection = db.get('usercollection');
+        collection.find({},{'username':username,'password':password},function(e,docs){
+            if(docs){
+                console.log("username and password is valid");
+                res.render('upload', {});
+            }else{
+                console.log("username and password is invalid");
+            }
+        });
+    };
+};
+
 exports.upload = function(req, res){
     console.log("upload");
     res.render('upload', {});

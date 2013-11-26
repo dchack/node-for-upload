@@ -43,7 +43,8 @@ app.get('/newuser', routes.newuser);
 app.post('/adduser', routes.adduser(db));
 app.get('/login', routes.login);
 app.get('/upload', routes.upload);
-app.post('/doupload', routes.doupload);
+app.get('/doupload', routes.doupload);
+app.post('/dologin', routes.dologin(db));
 app.get('/uploadsuccess', routes.uploadsuccess);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
