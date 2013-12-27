@@ -1,4 +1,5 @@
 var fs = require('fs');
+var Sessions = require('./service/sessionsManage');
 /*
  * GET home page
  */
@@ -39,14 +40,36 @@ exports.newuser = function(req, res){
 * login
  */
 exports.login = function(req, res){
-    console.log("login");
+
+//    // 获得客户端的Cookie
+//    var Cookies = {};
+//    req.headers.cookie && req.headers.cookie.split(';').forEach(function( Cookie ) {
+//        var parts = Cookie.spu\lit('=');
+//        Cookies[ parts[ 0 ].trim() ] = ( parts[ 1 ] || '' ).trim();
+//    });
+//    console.info(Cookies);
+//    console.info(Cookies["myCookie"]);//"test"
+//    var cookie;
+//    if(req.headers.cookie){
+//        cookie = req.headers.cookie
+//    }
+//    if(cookie){
+//        console.info(cookie)
+//    }
+//
+//
+//    console.log("login");
+//    // 设置cookie
+//    res.setHeader(
+//        'Set-Cookie', 'myCookie=test'
+//    );
     res.render('login', {});
 
 };
 
-exports.dologin = function(db){
+exports.dologin = function(db, sessions){
     return function(req, res) {
-        console.log("doupload");
+        console.log("dologin");
         var username = req.body.username;
         var password = req.body.password;
         console.log("username:" + username + "password:" + password);
@@ -54,6 +77,12 @@ exports.dologin = function(db){
         collection.find({},{'username':username,'password':password},function(e,docs){
             if(docs){
                 console.log("username and password is valid");
+                var opts = {
+                    name : "user",
+                    value : username,
+                    expires : 500
+                };
+                sessions.setSession(req,res,opts);
                 res.render('upload', {});
             }else{
                 console.log("username and password is invalid");
