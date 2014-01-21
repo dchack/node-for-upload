@@ -11,7 +11,7 @@ we can build a web project for Operations team to upload for themselves.
 
 ## Quickstart
 
-	this is base on node.js, please check you have a node.js environment.
+   this is base on node.js, please check you have a node.js environment.
 
 ## About author
 
@@ -22,7 +22,7 @@ email:hopehack206@gmail.com
 blog:http://www.cnblogs.com/killbug/	
 
 ## Notice
-
+	it also user mongdb. so please check it.
 	there is a session code by myself, it just simulate the http session mechanism.
 
 ## Contents

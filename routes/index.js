@@ -98,6 +98,7 @@ exports.upload = function(req, res){
 
 exports.doupload = function(req, res){
     console.log("req.file = " + req.files.uploadfile.path);
+    console.log("11111");
     var newPath = __dirname +"/uploadfiletmp";
     var filename = (new Date).getTime();
     var newFilePath = newPath + "/" + filename +".jpg";

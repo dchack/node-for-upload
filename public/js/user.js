@@ -7,5 +7,5 @@
  */
 
 function uploadImage(){
-    $('form').submit();
+    $('#upform').submit();
 }

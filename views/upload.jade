@@ -6,8 +6,9 @@
    To change this template use File | Settings | File Templates.
 extends layout
 block content
+    div(id="",class="s-skin-container",style="top: 0px; background-color: rgb(64, 64, 64); background-image: url('http://1.su.bdimg.com/skin/56.jpg');")
     div.fileInput-div
-        form(action="/doupload", method="post", enctype="multipart/form-data")
+        form(id="upform" action="/doupload", method="post", enctype="multipart/form-data")
             div(class="fileWrapper")
                 a(class="fileButton") 上传图片
                 input(name="uploadfile", id="uploadfile", class="fileInput ", type="file", onchange="uploadImage()")

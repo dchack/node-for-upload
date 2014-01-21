@@ -53,7 +53,7 @@ if ('development' == app.get('env')) {
 //});
 
 app.get(/^\/*/,function(req, res, next){
-        if(req.path == "/upload" || req.path == "/doupload"){
+   if(req.path == "/upload" || req.path == "/doupload"){
         var user = SessionsManage.getSession(req,"user");
         if(!user){
             res.render('login', {});
@@ -71,7 +71,7 @@ app.get('/newuser', routes.newuser);
 app.post('/adduser', routes.adduser(db));
 app.get('/login', routes.login);
 app.get('/upload', routes.upload);
-app.get('/doupload', routes.doupload);
+app.post('/doupload', routes.doupload);
 app.post('/dologin', routes.dologin(db, SessionsManage));
 app.get('/uploadsuccess', routes.uploadsuccess);
 
