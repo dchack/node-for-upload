@@ -6,11 +6,13 @@
    To change this template use File | Settings | File Templates.
 extends layout
 block content
-    div(id="",class="s-skin-container",style="top: 0px; background-color: rgb(64, 64, 64); background-image: url('http://1.su.bdimg.com/skin/56.jpg');")
+    div(id="background",class="s-skin-container",style="top: 0px; display:none; background-color: rgb(64, 64, 64); background-image: url('http://1.su.bdimg.com/skin/56.jpg');")
     div.container
         form(name="login", action="/dologin", method="post", class="form-signin")
             h2.form-signin-heading 请登录
             input(type="text", name="username",class="form-control", placeholder="邮箱")
             input(type="password", name="password",class="form-control", placeholder="密码" )
             button(type="submit", class="btn btn-primary btn-lg btn-block", value="Sign in") 登录
+
+
 

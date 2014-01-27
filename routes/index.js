@@ -1,5 +1,5 @@
 var fs = require('fs');
-var Sessions = require('./service/sessionsManage');
+var formidable = require('formidable');
 /*
  * GET home page
  */
@@ -98,7 +98,6 @@ exports.upload = function(req, res){
 
 exports.doupload = function(req, res){
     console.log("req.file = " + req.files.uploadfile.path);
-    console.log("11111");
     var newPath = __dirname +"/uploadfiletmp";
     var filename = (new Date).getTime();
     var newFilePath = newPath + "/" + filename +".jpg";
@@ -114,6 +113,56 @@ exports.doupload = function(req, res){
         });
     });
 };
+
+exports.jupload = function(sessions){
+    console.log("jupload");
+    return function(req, res) {
+        var form = new formidable.IncomingForm();
+        form.uploadDir = __dirname;
+        form.parse(req, function(err, fields, files) {
+            //res.writeHead(200, {'content-type': 'text/plain'});
+            res.write('Received upload:\n\n');
+            var exts = files.ajaxfile.name.split('.');
+            var ext = exts[1];
+            var date = new Date();
+            var ms = Date.parse(date);
+            fs.renameSync(files.ajaxfile.path, __dirname +"/uploadfiletmp/" + ms +"." + ext);
+        });
+        var opts = {
+            name : "uploadprogress",
+            value : 0,
+            expires : 500
+        };
+
+        sessions.setSession(req,res,opts);
+        //文件上传中事件
+        form.on("progress", function (bytesReceived, bytesExpected) {
+            console.log("progress!" + bytesReceived +"____" + bytesExpected);
+            var percent = Math.round(bytesReceived/bytesExpected * 100);
+            var opts = {
+                name : "uploadprogress",
+                value : percent,
+                expires : 500
+            };
+            sessions.setSession(req,res,opts);
+        });
+        res.render("upload", {});
+    };
+
+//    form.on("complete", function (err) {
+//        console.log("complete!");
+//    });
+
+};
+
+exports.uploadprogress = function(sessions){
+    console.log("uploadprogress");
+    return function(req, res) {
+        var progress = sessions.getSession(req, "uploadprogress");
+
+    }
+};
+
 
 exports.uploadsuccess = function(req, res){
     console.log("uploadsuccess");

@@ -6,5 +6,5 @@
  * To change this template use File | Settings | File Templates.
  */
 module.exports = {
-    SERVER_PATH : ""
+    SERVER_PATH : "/usr/local/server/imgs/"
 };

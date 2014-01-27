@@ -23,7 +23,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
-app.use(express.bodyParser());
+app.use(express.bodyParser({ defer: true}));
 app.use(express.methodOverride());
 //app.use(express.cookieParser('your secret here'));
 //app.use(express.session());
@@ -74,7 +74,8 @@ app.get('/upload', routes.upload);
 app.post('/doupload', routes.doupload);
 app.post('/dologin', routes.dologin(db, SessionsManage));
 app.get('/uploadsuccess', routes.uploadsuccess);
-
+app.post("/jupload",routes.jupload(SessionsManage));
+app.get("/uploadprogress", routes.uploadprogress);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

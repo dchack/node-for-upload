@@ -9,3 +9,17 @@
 function uploadImage(){
     $('#upform').submit();
 }
+$(document).ready(function(){
+
+        $("#background").fadeIn(4000);
+});
+
+function aupload(fileElementId){
+    $.ajaxFileUpload({
+        url:"/jupload",
+        fileElementId:fileElementId,
+        success:function(){
+            alert(1);
+        }
+    })
+}
