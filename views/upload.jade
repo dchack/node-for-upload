@@ -16,8 +16,10 @@ block content
             //button(type="submit", class="btn btn-primary btn-lg btn-block", value="Sign in") 上传
            //button(type="submit", class="btn btn-primary btn-lg btn-block", value="Sign in") 上传
     div.fileInput-div
-        form(id="upform" action="/doupload", method="post", enctype="multipart/form-data")
+        form(id="upform", action="/doupload", method="post", enctype="multipart/form-data")
             div(class="fileWrapper")
                 a(class="fileButton") 上传图片
                 input(name="ajaxfile", id="ajaxfile", class="fileInput ", type="file", onchange="aupload('ajaxfile')")
-
+    div( id="progressbar")
+        div.progress
+            div(id="progress", class="progress-bar progress-bar-success", style="width: 0%;")

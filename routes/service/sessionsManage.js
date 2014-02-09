@@ -72,6 +72,30 @@ SessionsManage.prototype.setSession = function(req, res, opts){
     }
 };
 
+SessionsManage.prototype.setSession2 = function(req, res, opts){
+    if(!opts){
+        return false;
+    }else{
+        // 从cookie中获取id
+        var id = getIdFromCookies(req) || randomString(36);
+        var name = opts.name;
+        var value = opts.value;
+        var expires = opts.expires || this.def_expires;
+        if(id && value && name){
+            // 新创一个session
+            var session = new Session();
+            session[name] = value;
+            session["id"] = id;
+            session["overLifeTime"] = (+new Date) + expires*1000;
+            // 放置进sessions
+            this.sessions[id] = session;
+            // 写入返回客户端的cookie中
+            //this.setCookieId(res, id, expires);
+        }
+    }
+};
+
+
 SessionsManage.prototype.setCookieId = function(res, id, expires){
     // config cookie
     var d = new Date();
@@ -98,8 +122,8 @@ var getIdFromCookies = function(req){
         var parts = Cookie.split('=');
         Cookies[ parts[ 0 ].trim() ] = ( parts[ 1 ] || '' ).trim();
     });
-    console.info(Cookies);
-    console.info(Cookies["D_SID"]);
+//    console.info(Cookies);
+//    console.info(Cookies["D_SID"]);
     if(Cookies["D_SID"]){
         return Cookies["D_SID"];
     }else{

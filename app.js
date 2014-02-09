@@ -75,7 +75,7 @@ app.post('/doupload', routes.doupload);
 app.post('/dologin', routes.dologin(db, SessionsManage));
 app.get('/uploadsuccess', routes.uploadsuccess);
 app.post("/jupload",routes.jupload(SessionsManage));
-app.get("/uploadprogress", routes.uploadprogress);
+app.get("/uploadprogress", routes.uploadprogress(SessionsManage));
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

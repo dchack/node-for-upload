@@ -167,7 +167,7 @@ jQuery.extend({
             }			
             jQuery(form).submit();
 
-        } catch(e) 
+        } catch(e)
 		{			
             jQuery.handleError(s, xml, null, e);
         }
@@ -192,4 +192,6 @@ jQuery.extend({
 
         return data;
     }
+
+
 })

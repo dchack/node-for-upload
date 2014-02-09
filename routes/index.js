@@ -121,7 +121,7 @@ exports.jupload = function(sessions){
         form.uploadDir = __dirname;
         form.parse(req, function(err, fields, files) {
             //res.writeHead(200, {'content-type': 'text/plain'});
-            res.write('Received upload:\n\n');
+            //res.write('Received upload:\n\n');
             var exts = files.ajaxfile.name.split('.');
             var ext = exts[1];
             var date = new Date();
@@ -137,7 +137,7 @@ exports.jupload = function(sessions){
         sessions.setSession(req,res,opts);
         //文件上传中事件
         form.on("progress", function (bytesReceived, bytesExpected) {
-            console.log("progress!" + bytesReceived +"____" + bytesExpected);
+            //console.log("progress!" + bytesReceived +"____" + bytesExpected);
             var percent = Math.round(bytesReceived/bytesExpected * 100);
             var opts = {
                 name : "uploadprogress",
@@ -145,10 +145,12 @@ exports.jupload = function(sessions){
                 expires : 500
             };
             sessions.setSession(req,res,opts);
-        });
-        res.render("upload", {});
-    };
 
+        });
+        form.on('end', function() {
+            res.render("upload",{data : ""});
+        });
+    };
 //    form.on("complete", function (err) {
 //        console.log("complete!");
 //    });
@@ -159,7 +161,8 @@ exports.uploadprogress = function(sessions){
     console.log("uploadprogress");
     return function(req, res) {
         var progress = sessions.getSession(req, "uploadprogress");
-
+        console.log(progress+"---------------------");
+        res.send({"progress":progress});
     }
 };
 
